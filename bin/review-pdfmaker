@@ -211,10 +211,9 @@ def get_template(config)
   documentclassoption =  dclass[1] || "oneside"
 
   okuduke = ""
-
   config["okuduke_keys"].each do |key|
     if !config[key].nil? && !config[key].empty?
-      okuduke += "#{ReVIEW::I18n.t(key)} & #{escape_latex(config[key].join(ReVIEW::I18n.t("names_splitter")))} \\\\\n"
+      okuduke += "#{ReVIEW::I18n.t(key)} & #{escape_latex([config[key]].flatten.join(ReVIEW::I18n.t("names_splitter")))} \\\\\n"
     end
   end
 

@@ -236,9 +236,9 @@ def get_template(config)
   if !config["edt"].nil? && !config["edt"].empty?
     okuduke += "#{ReVIEW::I18n.t("edt")} & #{escape_latex(config["edt"].join(ReVIEW::I18n.t("names_splitter")))} \\\\\n"
   end
-  okuduke += <<EOB
-#{ReVIEW::I18n.t("prt")} & #{config["prt"]} \\\\
-EOB
+  if !config["prt"].nil? && !config["prt"].empty?
+    okuduke += "#{ReVIEW::I18n.t("prt")} & #{escape_latex(config["prt"].join(ReVIEW::I18n.t("names_splitter")))} \\\\\n"
+  end
 
   custom_titlepage = make_custom_titlepage(config["coverfile"])
 

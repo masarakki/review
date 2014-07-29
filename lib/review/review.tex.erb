@@ -225,8 +225,8 @@
 \renewcommand{\chaptermark}[1]{\markboth{\prechaptername\thechapter\postchaptername~#1}{}}
 \mainmatter
 <%= values["chap_str"] %>
-\renewcommand{\chaptermark}[1]{\markboth{\appendixname\thechapter~#1}{}}
-\reviewappendix
+
+\backmatter
 <%= values["post_str"] %>
 
 <% if values["colophon"] %>

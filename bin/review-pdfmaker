@@ -211,33 +211,11 @@ def get_template(config)
   documentclassoption =  dclass[1] || "oneside"
 
   okuduke = ""
-  authors = ""
-  if !config["aut"].nil? && !config["aut"].empty?
-    okuduke += "#{ReVIEW::I18n.t("aut")} & #{escape_latex(config["aut"].join(ReVIEW::I18n.t("names_splitter")))} \\\\\n"
-    authors = config["aut"].join(ReVIEW::I18n.t("names_splitter")) + ReVIEW::I18n.t("author_postfix")
-  end
-  if !config["csl"].nil? && !config["csl"].empty?
-    okuduke += "#{ReVIEW::I18n.t("csl")} & #{escape_latex(config["csl"].join(ReVIEW::I18n.t("names_splitter")))} \\\\\n"
-    authors += " \\\\\n"+config["csl"].join(ReVIEW::I18n.t("names_splitter")) + ReVIEW::I18n.t("supervisor_postfix")
-  end
-  if !config["trl"].nil? && !config["trl"].empty?
-    okuduke += "#{ReVIEW::I18n.t("trl")} & #{escape_latex(config["trl"].join(ReVIEW::I18n.t("names_splitter")))} \\\\\n"
-    authors += " \\\\\n"+config["trl"].join(ReVIEW::I18n.t("names_splitter")) + ReVIEW::I18n.t("translator_postfix")
-  end
-  if !config["dsr"].nil? && !config["dsr"].empty?
-    okuduke += "#{ReVIEW::I18n.t("dsr")} & #{escape_latex(config["dsr"].join(ReVIEW::I18n.t("names_splitter")))} \\\\\n"
-  end
-  if !config["ill"].nil? && !config["ill"].empty?
-    okuduke += "#{ReVIEW::I18n.t("ill")} & #{escape_latex(config["ill"].join(ReVIEW::I18n.t("names_splitter")))} \\\\\n"
-  end
-  if !config["cov"].nil? && !config["cov"].empty?
-    okuduke += "#{ReVIEW::I18n.t("edt")} & #{escape_latex(config["cov"].join(ReVIEW::I18n.t("names_splitter")))} \\\\\n"
-  end
-  if !config["edt"].nil? && !config["edt"].empty?
-    okuduke += "#{ReVIEW::I18n.t("edt")} & #{escape_latex(config["edt"].join(ReVIEW::I18n.t("names_splitter")))} \\\\\n"
-  end
-  if !config["prt"].nil? && !config["prt"].empty?
-    okuduke += "#{ReVIEW::I18n.t("prt")} & #{escape_latex(config["prt"].join(ReVIEW::I18n.t("names_splitter")))} \\\\\n"
+
+  config["okuduke_keys"].each do |key|
+    if !config[key].nil? && !config[key].empty?
+      okuduke += "#{ReVIEW::I18n.t(key)} & #{escape_latex(config[key].join(ReVIEW::I18n.t("names_splitter")))} \\\\\n"
+    end
   end
 
   custom_titlepage = make_custom_titlepage(config["coverfile"])
